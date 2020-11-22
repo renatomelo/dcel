@@ -5,7 +5,8 @@
 - O executável (poliedro) é gerado no diretório 'bin' junto com as suas dependências.
 
 Compilação: `make`
-Execução:	`cd bin/; java poliedro < arquivo_entrada > arquivo_saida`
+
+Execução: `cd bin/; java poliedro < arquivo_entrada > arquivo_saida`
 
 ## Descrição da estrutura
 Uma DCEL é uma estruturas de dados utilizada para representar subdivisões planares. Baseada em listas de arestas que contém três tipos de objetos principais: vértice, aresta e face. Isso facilita a travessia das faces de uma subdivisão planar, visitando todas as arestas que saem de um dado vértice.
@@ -25,18 +26,23 @@ As informações armazenadas nesta lista duplamente encadeada é suficiente para
 Além disso podemos fazer algumas consultas interessantes, como: dada a descrição de uma DCEL, uma reta $L$ e uma semi aresta que é cortada por $L$, encontrar eficientemente todas as faces que são cortadas por $L$.
 
 A seguinte rotina ilustra como seria possível atravessar uma face $f$: 
-	**Entrada**: uma aresta de  $f$
-		1. Determina a semi aresta $e$, incidente à $f$
-		2. aresta_atual $\leftarrow e$
-		3. **Enquanto** próxima($e$) $\neq$ aresta_atual **faça**
-			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$e \leftarrow$ próxima($e$)
+
+**Entrada**: uma aresta de  $f$
+1. Determina a semi aresta $e$, incidente à $f$
+2. aresta_atual $\leftarrow e$
+3. **Enquanto** próxima($e$) $\neq$ aresta_atual **faça**
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$e \leftarrow$ próxima($e$)
 
 Atravessando todas as arestas incidentes a um vértice $v$:
-	**Entrada**: uma semi aresta $e$ que tem origem em $v$
-	**Saída**: Apenas as semi arestas que têm origem em $ v $
-		1. aresta\_atual $\leftarrow e$
-		2. **Enquanto** próxima(simétrica($e$)) $\neq$ aresta_atual **faça**
-		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$e \leftarrow$ próxima(simétrica($ e $))
+
+**Entrada**: uma semi aresta $e$ que tem origem em $v$
+
+**Saída**: Apenas as semi arestas que têm origem em $ v $
+1. aresta_atual $\leftarrow e$
+2. **Enquanto** próxima(simétrica($e$)) $\neq$ aresta_atual **faça**
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$e \leftarrow$ próxima(simétrica($ e $))
 
 Apesar das várias vantagens que podem ser obtidas em usar uma estrutura DCEL, tais como, eficiência nas buscas, na travessia entre arestas e faces, flexibilidade no formato dos dados processados e a possibilidade de funcionar em diversos algoritmos. É preciso ser cuidadoso na hora de escolher usar uma DCEL, porque em alguns casos pode ser exagero usar uma estrutura tão robusta, se alguma aplicação pode ser feita com estruturas mais simples. Isso principalmente por causa da complexidade de implementação. 
 
